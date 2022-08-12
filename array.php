@@ -122,7 +122,7 @@ foreach(array_splice($tempe,0,7) as $item){
     echo $item.",";
 };
 #11
-echo nl2br("\n\n9. Write a PHP script to calculate and display average temperature, five lowest and highest temperatures.\n");
+echo nl2br("\n\n11. Write a PHP script to calculate and display average temperature, five lowest and highest temperatures.\n");
 $array11 = array(array(77, 87), array(23, 45));
 $array21 = array("w3resource", "com");
 
@@ -144,4 +144,33 @@ echo nl2br("\n");
 print_r(array_map("toup",$Color));
 #13
 echo nl2br("\n\n13.Write a PHP script which display all the numbers between 200 and 250 that are divisible by 4.\n");
+print_r(range(200, 250, 4));
+#14
+echo nl2br("\n\n14. Write a PHP script to get the shortest/longest string length from an array.\n");
+$array14 = ["abcd","abc","de","hjjj","g","wer"];
 
+function sortByLen($a,$b){
+    return strlen($b)-strlen($a);
+}
+usort($array14,"sortByLen");
+
+echo "The shortest array length is ".strlen(end($array14))." "."The longest array length is"." ".strlen($array14[0]);
+#15
+echo nl2br("\n\n15. Write a PHP script to generate unique random numbers within a range.\n");
+$n=range(11,20);
+shuffle($n);
+for ($x=0; $x< 10; $x++)
+{
+    echo $n[$x].' ';
+}
+echo "\n";
+#16
+echo nl2br("\n\n16. Write a PHP script to get the largest key in an array.\n");
+$max_key = max( array_keys( $ceu) );
+echo $max_key."\n";
+#17
+echo nl2br("\n\n17. Write a PHP function that returns the lowest integer that is not 0\n");
+usort($ceu,"sortByLen");
+echo end($ceu);
+#18
+echo nl2br("\n\n18. Write a PHP function to floor decimal numbers with precision.\n");
