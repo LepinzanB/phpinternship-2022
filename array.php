@@ -1,5 +1,3 @@
-
-
 <br><br>
 <h2 >Exercitii</h2>
 <h2>Arrays</h2>
@@ -315,6 +313,209 @@ function merge_arrays($arr1, $arr2)
     }
         return $temp;
 }
-echo '<pre>'; print_r(array_map('merge_arrays',$array2,$array1));
+echo "<pre>";
+print_r(array_map('merge_arrays',$array2,$array1));
+echo "</pre>";
 ?>
 
+<h4>12. Write a PHP function to change the following array's all values to upper or lower case.</h4>
+<p>
+    <b>Sample arrays:</b><br><br>
+    $Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');<br><br>
+    <b>Expected Output:</b><br><br>
+    Values are in lower case.<br>
+    Array ( [A] => blue [B] => green [c] => red )<br>
+    Values are in upper case.<br>
+    Array ( [A] => BLUE [B] => GREEN [c] => RED )<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+$color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+echo nl2br("Values are in lower case.\n");
+foreach($color as $key => $value){
+    $newValue = strtolower($value);
+    $color[$key] = $newValue;
+}
+print_r($color);
+// print_r(array_change_key_case($color,CASE_LOWER));
+echo "<br>";
+echo nl2br(" Values are in upper case.\n");
+foreach($color as $key => $value){
+    $newValue = strtoupper($value);
+    $color[$key] = $newValue;
+}
+print_r($color);
+?>
+
+<h4>13.Write a PHP script which display all the numbers between 200 and 250 that are divisible by 4.</h4>
+<p>
+    <b>Note: </b> Do not use any PHP control statement.<br><br>
+    <b>Expected Output:</b> 200,204,208,212,216,220,224,228,232,236,240,244,248<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+echo implode(",",range(200,250,4))."\n";
+?>
+
+<h4>14. Write a PHP script to get the shortest/longest string length from an array.</h4>
+<p>
+    <b>Sample arrays: </b> ("abcd","abc","de","hjjj","g","wer")<br><br>
+    <b>Expected Output:</b> The shortest array length is 1. The longest array length is 4.<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+$stringArray = array("abcd","abc","de","hjjj","g","wer");
+$newArray = array_map('strlen', $stringArray);
+// print_r($newArray);
+echo "The shortest array length is " . min($newArray).". The longest array length is ".max($newArray).".";
+?>
+
+<h4>15. Write a PHP script to generate unique random numbers within a range.</h4>
+<p>
+    <b>Sample range: </b> (11, 20)<br><br>
+    <b>Sample Output:</b> 17 16 13 20 14 19 18 15 11 12<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+$numbers = range(11, 20);
+shuffle($numbers);
+foreach($numbers as $item)
+    echo $item." ";
+?>
+
+<h4>16. Write a PHP script to get the largest key in an array.</h4>
+<p>
+    <b>Output:</b>
+</p>
+
+<?php
+$largestKey = [1=>40,50=>2,4=>3];
+print_r($largestKey);
+echo "<br>";
+echo "The largest key is: ".max(array_keys($largestKey));
+?>
+
+<h4>17. Write a PHP function that returns the lowest integer that is not 0.</h4>
+<p>
+    <b>Output:</b>
+</p>
+
+<?php
+function lowestInteger($arr){
+    return min(array_diff(array_map('intval',$arr),array(0)));
+}
+$arrayy = [3,2,1,0];
+print_r(lowestInteger($arrayy));
+?>
+
+<h4>18. Write a PHP function to floor decimal numbers with precision.</h4>
+<p>
+    <b>Note: </b> Accept three parameters number, precision and $separator<br><br>
+    <b>Sample Data:</b><br><br>
+    1.155, 2, "."<br>
+    100.25781, 4, "."<br>
+    -2.9636, 3, "."<br><br>
+    <b>Expected Output:</b><br><br>
+    1.15<br>
+    100.2578<br>
+    -2.964<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+function floorDecNumber($number,$precision,$separator){
+    $newNumber = explode($separator,$number);
+    $newNumber[1]=substr_replace($newNumber[1],$separator,$precision,0);
+    // $c = $newNumber[1];
+    if($newNumber[0]>=0)
+    {
+        $newNumber[1]=floor($newNumber[1]);
+        // $d = $newNumber[1];
+    }
+    else
+    {
+        $newNumber[1]=ceil($newNumber[1]);
+        // $d = $newNumber[1];
+    }
+
+    $rezNumber= array($newNumber[0],$newNumber[1]);
+    $result = implode($separator,$rezNumber);
+    return $result;
+}
+echo nl2br (print_r(floorDecNumber(1.155, 2, "."))."\n");
+echo nl2br (print_r(floorDecNumber(100.25781, 4, "."))."\n");
+echo nl2br (print_r(floorDecNumber(-2.9636, 3, "."))."\n");
+?>
+
+<h4>19. Write a PHP script to print "second" and Red from the following array.</h4>
+<p>
+    <b>Sample Data:</b><br><br>
+    $color = array ( "color" => array ( "a" => "Red", "b" => "Green", "c" => "White"),<br>
+    "numbers" => array ( 1, 2, 3, 4, 5, 6 ),<br>
+    "holes" => array ( "First", 5 => "Second", "Third"));<br><br>
+    <b>Output:</b>
+</p>
+
+<?php
+$color = array ( "color" => array ( "a" => "Red", "b" => "Green", "c" => "White"),"numbers" => array ( 1, 2, 3, 4, 5, 6 ),"holes" => array ( "First", 5 => "Second", "Third"));
+echo nl2br($color["holes"][5]."\n");
+echo nl2br($color["color"]["a"]."\n");
+?>
+
+<h4>23. Write a PHP program to sort a multi-dimensional array set by specific key.</h4>
+<p>
+    <b>Output:</b>
+</p>
+
+<?php
+$mat = array();
+$mat[0]["firstName"] = "Mihaela";
+$mat[0]["lastName"] = "Petricele";
+
+$mat[1]["firstName"] = "Ana";
+$mat[1]["lastName"] = "Popescu";
+
+$mat[2]["firstName"] = "Gabriela";
+$mat[2]["lastName"] = "Torzsa";
+
+function sortMatByAKey($matrice,$col){
+    for($i = 0; $i < sizeof($matrice) - 1; $i++){
+        for($j = 0; $j < sizeof($matrice) - 1 - $i; $j++){
+           if($matrice[$j][$col] > $matrice[$j+1][$col]){
+                $aux = $matrice[$j];
+                $matrice[$j] = $matrice[$j+1];
+                $matrice[$j+1] = $aux;
+           }
+        }
+    }
+    return $matrice;
+}
+echo '<pre>'; print_r(sortMatByAKey($mat, 'firstName'));
+echo '</pre>';
+?>
+
+<h4>24. Write a PHP script to sort an array using case-insensitive natural ordering.</h4>
+<p>
+    <b>Output:</b>
+</p>
+
+<?php
+$car = array("car1", "car30", "car3", "car2");
+echo "<i>Before sort:</i> <br>";
+echo "<pre>";
+print_r($car);
+echo "</pre>";
+
+echo "<br>";
+echo "<i>After sort using case-insensitive natural ordering:</i> <br>";
+
+natcasesort($car);
+
+echo "<pre>";
+print_r($car);
+echo "</pre>";
+?>
