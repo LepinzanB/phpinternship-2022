@@ -256,22 +256,72 @@
     $rez = implode(",", $array);
     pretty("20)Write a PHP function to sort an array according to another array acting as a priority list:",$rez);
     //21
-    function my_sort($arr){
-        $len = count($arr);
-        $rez = [];
-        $rez[] = $arr[0];
-        $k = 0;
-        for($i = 1; $i < $len; $i ++){
-            if($arr[$i] > $rez[$k]){
-                $rez[] = $arr[$i];
-                $k ++;
+    function comp_subnets($adr1, $adr2){
+        $a1 = explode('.',$adr1);
+        $a2 = explode('.',$adr2);
+        for($i = 0; $i < 3; $i ++){
+            if($a1[$i] < $a2[$i]){
+                return -1;
             }
-            if($arr[$i] < $rez[0]){
-                array_unshift($rez, $arr[$i]);
-                $k ++;
+            if($a2[$i] < $a1[$i]){
+                return 1;
             }
         }
-        print_r($rez);
+        return 0;
     }
-    $arr = [1,5,4,2,10];
-    my_sort($arr);
+    $list = ['167.169.12', '167.167.11', '167.169.14',
+        '167.168.13', '167.167.12', '167.169.15', '167.167.16'];
+    usort($list,'comp_subnets');
+    $rez = implode(' , ',$list);
+    pretty("21) Write a PHP function to sort subnets:", $rez);
+    //22
+    function comp_by_id_or_user($x, $y){
+        if($x["id"] > $y["id"]){
+            return 1;
+        }
+        elseif($x["id"] < $y["id"])
+            return -1;
+        elseif($x["username"] < $y["username"])
+            return -1;
+        else return 1;
+    }
+    $list = [];
+    $list[0]["id"] = 111;
+    $list[1]["id"] = 111;
+    $list[2]["id"] = 113;
+    $list[0]["username"] = "dummy";
+    $list[1]["username"] = "dummies";
+    $list[2]["username"] = "dummies";
+    usort($list,'comp_by_id_or_user');
+    $rez = implode(' , ',$list[0])." ";
+    $rez .= implode(' , ',$list[1])." ";
+    $rez .= implode(' , ',$list[2]);
+    pretty("22) Write a PHP script to sort the following array by the day (page_id) and user name:", $rez);
+    //23
+    function comp_by_column($x, $y){
+        global $col;
+        return $x[$col] > $y[$col] ? 1 : -1;
+    }
+    $col = "id";
+    usort($list,'comp_by_column');
+    //output here is tricky, I won't print anything for now
+    //24
+    function comp_case_insensitive($x, $y){
+        return strtolower($x) > strtolower($y) ? 1 : -1;
+    }
+    $arr = ['as', 'As', 'ASUS', 'asuss', 'ASASAsa'];
+    usort($arr,'comp_case_insensitive');
+    $rez = implode(' , ',$arr);
+    pretty("24) Write a PHP script to sort an array using case-insensitive natural ordering:", $rez);
+    //37. Write a PHP script to count the total number of times a specific value appears in an array
+    function count_val($arr, $val){
+        $k = 0;
+        foreach($arr as $el){
+            if($el === $val)
+                $k ++;
+        }
+        return $k;
+    }
+    //59
+    eval("echo 4*5;");
+
