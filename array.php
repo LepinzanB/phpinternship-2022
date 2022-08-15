@@ -25,7 +25,7 @@ foreach ($color as $id){
     echo  nl2br("\n".$id);
 };
 #3
-echo nl2br("3.Create a PHP script which display the capital and country name from the above array $ ceu. Sort the list 
+echo nl2br("\n\n3.Create a PHP script which display the capital and country name from the above array $ ceu. Sort the list 
 by the name of the country.");
 
 $ceu = [ "Italy"=>"Rome", "Luxembourg"=>"Luxembourg", "Belgium"=> "Brussels",
@@ -170,7 +170,92 @@ $max_key = max( array_keys( $ceu) );
 echo $max_key."\n";
 #17
 echo nl2br("\n\n17. Write a PHP function that returns the lowest integer that is not 0\n");
-usort($ceu,"sortByLen");
-echo end($ceu);
+$array17 = [11,10,0,22,8,5,4];
+echo min(array_diff($array17, [0]));
 #18
 echo nl2br("\n\n18. Write a PHP function to floor decimal numbers with precision.\n");
+function floDe($number, $precision, $separator){
+    $string =strval($number);
+    $rs = substr($string,0,stripos($string,$separator)+$precision+1);
+    echo nl2br($rs."\n");
+};
+floDe(1.155,2,".");
+floDe(100.25781, 4, ".");
+floDe(-2.9636, 3, ".");
+#19
+echo nl2br("\n\n19. Write a PHP script to print 'second' and Red from the following array.\n");
+$color = [ "color" => [ "a" => "Red", "b" => "Green", "c" => "White"],
+        "numbers" =>  [ 1, 2, 3, 4, 5, 6 ],
+        "holes" => [ "First", 5 => "Second", "Third"]];
+echo nl2br($color["holes"][5]."\n");
+echo $color["color"]["a"]."\n";
+#21
+echo nl2br("\n\n21 Write a PHP function to sort subnets.\n");
+function subnet_sort($a){
+    $subnets = $a;
+    sort($subnets,SORT_STRING);
+    return $subnets;
+};
+$list = ['192.169.12', '192.167.11', '192.169.14', '192.168.13', '192.167.12', '122.169.15', '192.167.16'];
+$subnets = subnet_sort($list);
+foreach ($subnets as $item){
+    echo nl2br($item."\n");
+};
+#23
+echo nl2br("\n\n23 Write a PHP program to sort a multi-dimensional array set by specific key.\n");
+$my_array[0]['name'] = 'Sana';
+$my_array[0]['email'] = 'sana@example.com';
+$my_array[0]['phone'] = '111-111-1234';
+$my_array[0]['country'] = 'USA';
+
+$my_array[1]['name'] = 'Robin';
+$my_array[1]['email'] = 'robin@example.com';
+$my_array[1]['phone'] = '222-222-1235';
+$my_array[1]['country'] = 'UK';
+
+$my_array[2]['name'] = 'Sofia';
+$my_array[2]['email'] = 'sofia@example.com';
+$my_array[2]['phone'] = '333-333-1236';
+$my_array[2]['country'] = 'India';
+array_multisort(array_column($my_array,"name"),SORT_ASC,$my_array);
+var_dump($my_array);
+#24
+echo nl2br("\n\n24 Write a PHP script to sort an array using case-insensitive natural ordering.\n");
+$array24 = ['IMG0.png', 'img12.png', 'img10.png', 'img2.png', 'img1.png', 'IMG3.png'];
+natcasesort($array24);
+print_r($array24);
+#26
+echo nl2br("\n\n26 Write a PHP function to shuffle an associative array, preserving key, value pairs.\n");
+$array26 = ["color1" => "Red",
+            "color2" => "Green",
+            "color3" => "Yellow"];
+function shuffleAs($my_array26){
+    $keys = array_keys($my_array26);
+    shuffle($keys);
+    foreach ($keys as $key) {
+        $new[$key] = $my_array26[$key];
+    }
+    $my_array26 = $new;
+    print_r($my_array26);
+}
+shuffleAs($array26);
+#27
+echo nl2br("\n\n27 Write a PHP function to generate a random password (contains uppercase, lowercase, numeric and 
+other) using shuffle() function.\n");
+$strLower = "abcdefghijklmnopqrstuvwxyz";
+$strUpper = strtoupper($strLower);
+$figure = "1234567890";
+$specialChr = "~`!@#$%^&*()_+-=|\,./<>?";
+$len = implode("",range(1,3))."2";
+$len = str_shuffle($len);
+$password = substr(str_shuffle($strLower),0,$len[0]).substr(str_shuffle($strUpper),0,$len[1]).substr(str_shuffle($figure),0,$len[2]).substr(str_shuffle($specialChr),0,$len[3]);
+echo str_shuffle($password);
+#28
+echo nl2br("\n\n28. Write a PHP script to sort an array in reverse order (highest to lowest).\n");
+$array28 = ["Banana", "Orange", "Apple", "Mango"];
+rsort($array28);
+print_r($array28);
+#32
+echo nl2br("\n\n32. Write a PHP program to get the extension of a file.\n");
+$file32='example.txt';
+echo pathinfo($file32, PATHINFO_EXTENSION);

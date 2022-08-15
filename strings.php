@@ -79,3 +79,44 @@ echo bin2hex($str);
 echo nl2br("\n\n16. Write a PHP script to insert a string at the specified position in a given string.\n");
 $string16 = "The brown fox";
 echo substr_replace($string16,"quick ",strrpos($string16,"brown"),0);
+#17
+echo nl2br("\n\n17. Write a PHP script to get the first word of a sentence.\n");
+$string17 = "The quick brown fox";
+echo strtok($string17," ");
+#18
+echo nl2br("\n\n18. Write a PHP script to remove all leading zeroes from a string.\n");
+$string18 = "000547023.24";
+echo ltrim($string18,"0");
+#19
+echo nl2br("\n\n19. Write a PHP script to remove part of a string.\n");
+$string19 = "The quick brown fox jumps over the lazy dog";
+echo str_replace("fox", "",$string19);
+#20
+echo nl2br("\n\n20. Write a PHP script to remove trailing slash from a string.\n");
+$string20 = "The quick brown fox jumps over the lazy dog///";
+echo rtrim($string20, "/");
+#21
+echo nl2br("\n\n21. Write a PHP script to get the characters after the last '/' in an url.\n");
+$string21 = "http://www.example.com/5478631";
+echo substr($string21,strrpos($string21,"/")+1);
+#22
+echo nl2br("\n\n22. Write a PHP script to replace multiple characters from the following string.\n");
+$string22 = "'\\1+2/3*2:2-3/4*'3";
+echo str_replace(str_split("\+/*:-'")," ",$string22);
+#23
+echo nl2br("\n\n23. Write a PHP script to select first 5 words from the following string.\n");
+$string23 = "The quick brown fox jumps over the lazy dog";
+echo implode(" ",(array_slice(explode(" ", $string23),0,5)));
+#24
+echo nl2br("\n\n24. Write a PHP script to remove comma(s) from the following numeric string.\n");
+$string24 = "2,543.12";
+echo str_replace(",","",$string24);
+#25
+echo nl2br("\n\n25. Write a PHP script to print letters from 'a' to 'z'.\n");
+for($i = ord("a"); $i<=ord("z");$i++){
+    echo chr($i)." ";
+}
+#26
+echo nl2br("\n\n26. What will display the next code.\n");
+$d= "Aoo";
+echo ++$d;
