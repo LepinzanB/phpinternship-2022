@@ -106,3 +106,172 @@
         return $sum/count($array);
     }
     pretty("9)Write a PHP script to calculate and display average temperature, five lowest and highest temperatures:",avg($array));
+    sort($array);
+    pretty("",implode(",",array_slice($array,0,5)));
+    pretty("",implode(",",array_slice($array,-5,5)));
+    //10
+    function my_sum($arr, $i){
+        $sum = 0;
+        foreach ($arr as $val){
+            $sum += $val > $i;
+        }
+        return $sum;
+    }
+    function beadSort($arr){
+        $step = 0;
+        $rez = [];
+        $rez = array_fill(0,max($arr),0);
+        foreach($arr as $val) {
+            for($j = 0; $j < $val; $j ++)
+                $rez[$j]++;
+        }
+        echo implode(",", $rez);
+        $len = count($arr);
+        $ret = [];
+        for($i = 0; $i < $len; $i ++){
+            $ret[] = my_sum($rez,$i);
+        }
+        return $ret;
+
+    }
+    $array = [5,3,1,3,12,7,4,1,1,3];
+    $rez = beadSort($array);
+    pretty("10)Write a PHP program to sort an array of positive integers using the Bead Sort Algorithm:",implode(",", $rez));
+    //11 din ce am inteles, trebuie facut un fel de merge unde arr1[i],arr2[i] and so on, iar daca arr1.len > arr2.len se continua cu arr1
+    $arr1 = array(array(77, 87), array(23, 45));
+    $arr2 = array("w3resource", "com");
+    $len1 = count($arr1);
+    $len2 = count($arr2);
+    $i = 0;
+    $j = 0;
+    $rez = [];
+    while($i < $len1 && $j < $len2){
+        $rez[] = $arr1[$i];
+        $rez[] = $arr2[$i];
+        $i++;
+        $j++;
+    }
+    while($i < $len1)
+    {
+        $rez[] = $arr1[$i];
+        $i++;
+    }
+    while($j < $len2)
+    {
+        $rez[] = $arr2[$j];
+        $j++;
+    }
+    pretty("11)Write a PHP program to merge (by index) the following two arrays:",implode(",", $rez));
+    //12
+    $color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+    $color = array_map('strtoupper',$color);
+    pretty("12)Write a PHP function to change the following array's all values to upper or lower case:","");
+    $rez = implode(",", $color);
+    pretty("","a)To upper: ".$rez);
+    $color = array_map('strtolower',$color);
+    $rez = implode(",", $color);
+    pretty("","a)To lower: ".$rez);
+    //13 I guess a for is not a control statement, right?
+    $arr = [];
+    for($i = 200; $i < 250; $i+=4 ){
+        $arr[] = $i;
+    }
+    $rez = implode(",", $arr);
+    pretty("13)Write a PHP script which display all the numbers between 200 and 250 that are divisible by 4:",$rez);
+    //14
+    function compLenght($s1, $s2){
+        $len1 = strlen($s1) ;
+        $len2 = strlen($s2) ;
+        if($len1 > $len2)
+            return 1;
+        elseif($len1 === $len2)
+            return 0;
+        else return 1;
+    }
+    $arr =  ["abcd","abc","de","hjjj","g","wer"];
+    usort($arr,'compLenght');
+    $rez = "The shortest string has length ".strlen($arr[0]).
+        ". The longest string has length ".strlen($arr[count($arr)-1]);
+    pretty("14)Write a PHP script to get the shortest/longest string length from an array:",$rez);
+    //15 am incercat cu array_rand(arr.len) dar cheile nu erau deloc random
+    $rez = [];
+    $arr = range(11,20);
+    while(count($arr) > 0){
+        $key = array_rand($arr,1);
+        $rez[] = $arr[$key];
+        unset($arr[$key]);
+        $array = array_values($arr);
+    }
+    $rez = implode(",", $rez);
+    pretty("15)Write a PHP script to generate unique random numbers within a range:",$rez);
+    //16
+    $arr = array(4 => 'white', 6 => 'green', 11=> 'red');
+    $keys = array_keys($arr);
+    $rez = count($keys) > 0 ? max($keys) : "array is empty";
+    pretty("16)Write a PHP script to get the largest key in an array:",$rez);
+    //17
+    function min_not_zero($arr){
+        return min(array_diff($arr, array(0)));
+    }
+    $arr = [1,0,0,0,0,0,23,241,2131];
+    pretty("17)Write a PHP function that returns the lowest integer that is not 0:",min_not_zero($arr));
+    //18
+    function floor_values($val, $precision, $separator){
+        return number_format($val,$precision,$separator," ");
+    }
+    $arr = [1.14314, 423.1414, 4414.422];
+    $rez = [];
+    foreach($arr as $val){
+        $rez[] = floor_values($val,2,',');
+    }
+    $rez = implode(" ; ", $rez);
+    pretty("18)Write a PHP function to floor decimal numbers with precision:",$rez);
+    //19
+    $color = array ( "color" => array ( "a" => "Red", "b" => "Green", "c" => "White"),
+        "numbers" => array ( 1, 2, 3, 4, 5, 6 ),
+        "holes" => array ( "First", 5 => "Second", "Third"));
+    $rez = "";
+    $rez.= $color["holes"][5];
+    $rez .= " ";
+    $rez.= $color["color"]["a"];
+    pretty("19)Write a PHP script to print 'second' and Red from the following array:",$rez);
+    //20
+    function comp_by_priority($a, $b){
+        global $priority_arr;
+        $a_key = array_search($a,$priority_arr);
+        $b_key = array_search($b,$priority_arr);
+        if($a_key > $b_key)
+            return 1;
+        elseif ($a_key == $b_key)
+            return 0;
+        else
+            return -1;
+    }
+    function sort_by_priority(&$arr){
+        uasort($arr,'comp_by_priority');
+    }
+    $priority_arr = [1,3,4,2];
+    $array = [1,2,4,2,1,4,3,2,2];
+    sort_by_priority($array);
+    $rez = implode(",", $array);
+    pretty("20)Write a PHP function to sort an array according to another array acting as a priority list:",$rez);
+    //21
+    function my_sort($arr){
+        $len = count($arr);
+        $rez = [];
+        $rez[] = $arr[0];
+        $k = 0;
+        for($i = 1; $i < $len; $i ++){
+            if($arr[$i] > $rez[$k]){
+                $rez[] = $arr[$i];
+                $k ++;
+            }
+            if($arr[$i] < $rez[0]){
+                array_unshift($rez, $arr[$i]);
+                $k ++;
+            }
+        }
+        print_r($rez);
+    }
+    $arr = [1,5,4,2,10];
+    my_sort($arr);
