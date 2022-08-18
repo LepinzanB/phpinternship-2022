@@ -1,5 +1,4 @@
 <?php
-
     echo '<table border="1" width="300" cellspacing="0">';
         echo '<tr>';
                 echo '<td>Nume</td>';
